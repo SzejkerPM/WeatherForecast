@@ -12,7 +12,7 @@ public class Launcher {
 
         //FUNKCJONALNOŚCI - 100%
 
-        //REFACTORING 30%
+        //REFACTORING 50%
 
         //TESTY 0%
 
@@ -20,7 +20,7 @@ public class Launcher {
 
         WeatherService weatherService = new WeatherService();
 
-        HistoryRepository historyRepository = new HistoryRepository(DatabaseConnection.getInstance());
+        HistoryRepository historyRepository = new HistoryRepository();
 
         System.out.println("Ilość miast w historii: " + historyRepository.getActualSizeOfCityHistory());
 

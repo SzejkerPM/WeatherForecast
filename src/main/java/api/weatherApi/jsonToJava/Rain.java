@@ -7,5 +7,5 @@ import lombok.Data;
 public class Rain {
 
     @JsonProperty("1h")
-    private double perH;
+    private double rainPerH;
 }

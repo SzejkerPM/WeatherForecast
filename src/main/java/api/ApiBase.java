@@ -30,27 +30,11 @@ public abstract class ApiBase {
         return response.body();
     }
 
-    public <T>T  convertJsonToJava(String body, Class<T> type) { //FIXME zwraca linkedHashMap
+    public <T> T convertJsonToJava(String body, Class<T> type) {
         try {
             return objectMapper.readValue(body, type);
         } catch (Exception e) {
-            throw new CallingApiException("Conversion from Json to Java failed in ApiBase");
+            throw new CallingApiException("Conversion from Json to Java failed");
         }
     }
-
-    // użyta wielokrotnie metoda z WeatherService zamiast tej!
-
-    /*public <T>List<T> convertJsonToJavaRepeatedly(List<String> bodies, Class<T> type) {
-        List<T> objects = new ArrayList<>();
-        try {
-            for (String body : bodies) {
-                objects.add(convertJsonToJava(body, type));
-            }
-        } catch (Exception e) {
-            throw new CallingApiException("Conversion from Json to Java failed in ApiBase (repeatedly)", e.getCause());
-        }
-        return objects;
-    }*/
-
-
 }

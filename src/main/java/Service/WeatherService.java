@@ -18,8 +18,8 @@ public class WeatherService {
 
     private final WeatherApi weatherApi = new WeatherApi();
     private final IpApi ipApi = new IpApi();
-    private final CityRepository cityRepository = new CityRepository(DatabaseConnection.getInstance());
-    private final HistoryRepository historyRepository = new HistoryRepository(DatabaseConnection.getInstance());
+    private final CityRepository cityRepository = new CityRepository();
+    private final HistoryRepository historyRepository = new HistoryRepository();
     private final List<String> mainCities = List.of("Białystok", "Bydgoszcz", "Gdańsk", "Gorzów+Wielkopolski", "Katowice",
             "Kielce", "Kraków", "Lublin", "Łódź", "Olsztyn", "Opole", "Poznań", "Rzeszów", "Szczecin", "Toruń",
             "Warszawa", "Wrocław", "Zielona+Góra");
@@ -35,7 +35,7 @@ public class WeatherService {
     }
 
     private History convertWeatherDataToHistory(WeatherMaster weatherMaster) {
-        return new History(weatherMaster.getId(), weatherMaster.getName());
+        return new History(weatherMaster.getCityId(), weatherMaster.getCityName());
     }
 
     /*private void addHistoryToDatabase(History history) {

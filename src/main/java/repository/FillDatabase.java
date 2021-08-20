@@ -13,19 +13,20 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class FillDatabase {
+public class FillDatabase extends RepositoryBase {
 
     // FIXME ogarnąć tutaj refactor
 
     private String filePath = "src/main/resources/city.list.json";
-    private CityRepository repository = createLocationRepository(DatabaseConnection.getInstance());
+    /*private CityRepository repository = createLocationRepository(DatabaseConnection.getInstance());*/
+    private CityRepository repository = new CityRepository();
     private List<CityObject> objects = convertJsonToObject(filePath);
     //insertObjectsIntoDatabase(objects, repository); do wywołania w main
 
 
-    private static CityRepository createLocationRepository(DatabaseConnection database) {
+   /* private static CityRepository createLocationRepository(DatabaseConnection database) {
         return new CityRepository(database);
-    }
+    }*/
 
     private static List<CityObject> convertJsonToObject(String filePath) {
         try {

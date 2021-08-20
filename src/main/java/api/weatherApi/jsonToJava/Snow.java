@@ -7,5 +7,5 @@ import lombok.Data;
 public class Snow {
 
     @JsonProperty("1h")
-    private boolean perH;
+    private boolean snowPerH;
 }

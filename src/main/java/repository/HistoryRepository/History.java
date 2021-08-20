@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Data //TODO spojrzeć na to
 @Entity
 @Table(name = "city_history")
 public class History {
