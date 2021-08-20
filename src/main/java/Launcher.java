@@ -9,6 +9,7 @@ public class Launcher {
 
         // T E S T O W A N K O
 
+
         //FUNKCJONALNOŚCI - 100%
 
         //REFACTORING 30%
