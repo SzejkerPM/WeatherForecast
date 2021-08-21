@@ -7,27 +7,33 @@ import Repository.CityRepository.CityRepository;
 import Repository.HistoryRepository.History;
 import Repository.HistoryRepository.HistoryRepository;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class WeatherService {
-
-    //FIXME souty w ramach testów
 
     private final WeatherApi weatherApi = new WeatherApi();
     private final IpApi ipApi = new IpApi();
     private final CityRepository cityRepository = new CityRepository();
     private final HistoryRepository historyRepository = new HistoryRepository();
-    private final List<String> mainCities = List.of("Białystok", "Bydgoszcz", "Gdańsk", "Gorzów+Wielkopolski", "Katowice",
-            "Kielce", "Kraków", "Lublin", "Łódź", "Olsztyn", "Opole", "Poznań", "Rzeszów", "Szczecin", "Toruń",
-            "Warszawa", "Wrocław", "Zielona+Góra");
-
-    /*private HashMap<String, Integer> mainCities = new HashMap<>();
-
-    private HashMap<String, Integer> fillMapWithData() {
-        mainCities.put("Białystok", 432423)
-    }*/
+    private final Map<String, Integer> mainCities = Map.ofEntries(
+            Map.entry("Białystok", 776069),
+            Map.entry("Bydgoszcz", 3102014),
+            Map.entry("Gdańsk", 3099434),
+            Map.entry("Gorzów Wielkopolski", 3098722),
+            Map.entry("Katowice", 3096472),
+            Map.entry("Kielce", 769250),
+            Map.entry("Kraków", 3094802),
+            Map.entry("Lublin", 765876),
+            Map.entry("Łódź", 3093133),
+            Map.entry("Olsztyn", 763166),
+            Map.entry("Opole", 3090048),
+            Map.entry("Poznań", 3088171),
+            Map.entry("Rzeszów", 759734),
+            Map.entry("Szczecin", 3083829),
+            Map.entry("Toruń", 3083271),
+            Map.entry("Warszawa", 6695624),
+            Map.entry("Wrocław", 3081368),
+            Map.entry("Zielona Góra", 3080165));
 
     private Optional<Integer> searchCityIdInDatabase(String cityName) {
         return cityRepository.findCityIdByCityName(cityName);
@@ -37,41 +43,36 @@ public class WeatherService {
         return new History(weatherMaster.getCityId(), weatherMaster.getCityName());
     }
 
-    /*private void addHistoryToDatabase(History history) {
-        historyRepository.saveCityToHistory(history);
-    }*/
-
-    //TODO sprawdzić czy takie zapisywanie historii działa
-
+    //metoda dodatkowo przeszukuje bazę w poszukiwaniu ID dla lepszych wyników
     public WeatherMaster getCurrentWeatherWithCityName(String cityName) {
         Optional<Integer> cityIdFromCityName = searchCityIdInDatabase(cityName);
+        WeatherMaster weatherMaster;
         if (cityIdFromCityName.isPresent()) {
-            System.out.println("\nPogoda wyświetlona na podstawie id miasta (znaleziono w bazie)");
-            WeatherMaster weatherMaster = weatherApi.convertJsonToJava(weatherApi.callApiWithCityId(cityIdFromCityName.get()), WeatherMaster.class);
-            historyRepository.saveCityToHistoryOrUpdateIfExists(convertWeatherDataToHistory(weatherMaster));
-            return weatherMaster;
+            weatherMaster = weatherApi
+                    .convertJsonToJava(weatherApi.callApiWithCityId(cityIdFromCityName.get()), WeatherMaster.class);
         } else {
-            System.out.println("\nPogoda wyświetlona na podstawie nazwy miasta (brak danych w bazie)");
-            WeatherMaster weatherMaster = weatherApi.convertJsonToJava(weatherApi.callApiWithCityName(cityName), WeatherMaster.class);
-            historyRepository.saveCityToHistoryOrUpdateIfExists(convertWeatherDataToHistory(weatherMaster));
-            return weatherMaster;
+            weatherMaster = weatherApi
+                    .convertJsonToJava(weatherApi.callApiWithCityName(cityName), WeatherMaster.class);
         }
+        historyRepository.saveCityToHistoryOrUpdateIfExists(convertWeatherDataToHistory(weatherMaster));
+        return weatherMaster;
     }
 
     public WeatherMaster getCurrentWeatherWithIp() {
-        System.out.println("Pogoda wyświetlona przy użyciu lokalizacji IP");
-        return weatherApi.convertJsonToJava(weatherApi.
-                callApiWithLatitudeAndLongitude(ipApi.getLat(), ipApi.getLon()), WeatherMaster.class);
+        return weatherApi.convertJsonToJava(weatherApi
+                .callApiWithLatitudeAndLongitude(ipApi.getLat(), ipApi.getLon()), WeatherMaster.class);
+    }
+
+    //metoda nie zapisuje miast do historii, ponieważ jest używana tylko do uzyskania pogody dla miast wojewódzkich
+    public WeatherMaster getCurrentWeatherWithCityId(int cityId) {
+        return weatherApi.convertJsonToJava(weatherApi.callApiWithCityId(cityId), WeatherMaster.class);
     }
 
     public List<WeatherMaster> getCurrentWeatherForMainCities() {
         List<WeatherMaster> citiesList = new ArrayList<>();
-        for (String s : mainCities) {
-            citiesList.add(getCurrentWeatherWithCityName(s));
+        for (Integer c : mainCities.values()) {
+            citiesList.add(getCurrentWeatherWithCityId(c));
         }
         return citiesList;
     }
-
-    // Po co dawać varargs skoro mamy stałą ilość miast?
-    // Po co robić warunek na zmianę spacji, skoro mogę dodać do tablicy gotowe nazwy? (gdzie je umieścić optymalnie?)
 }

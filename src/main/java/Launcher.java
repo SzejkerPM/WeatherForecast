@@ -1,5 +1,7 @@
 import Service.WeatherService;
-import Repository.HistoryRepository.HistoryRepository;
+import api.weatherApi.jsonToJava.WeatherMaster;
+
+import java.util.List;
 
 
 public class Launcher {
@@ -9,50 +11,28 @@ public class Launcher {
         // T E S T O W A N K O
 
 
-        //FUNKCJONALNOŚCI - 100%
+        //FUNKCJONALNOŚCI 100%
 
-        //REFACTORING 70%
+        //REFACTORING 90%
 
         //TESTY 0%
 
         //GUI 1%
 
-        //TODO sprawdzić wyjątki i ew wymienić
+        //REFACTORING GUI 0%
 
+
+        // Service zawiera wszystkie gotowe metody do użycia
         WeatherService weatherService = new WeatherService();
 
-        HistoryRepository historyRepository = new HistoryRepository();
+        System.out.println("Pogoda dla miast wojewódzkich:");
+        List<WeatherMaster> cities = weatherService.getCurrentWeatherForMainCities();
 
-        System.out.println("Ilość miast w historii: " + historyRepository.getActualSizeOfCityHistory());
-
-        //System.out.println(weatherService.getCurrentWeatherWithCityName("Sulejów"));
-
-        System.out.println(weatherService.getCurrentWeatherWithCityName("Wójtostwo"));
-
-        //System.out.println(weatherService.getCurrentWeatherWithCityName("Kraków"));
-
-        //System.out.println(weatherService.getCurrentWeatherWithCityName("Warszawa"));
-
-        //System.out.println(weatherService.getCurrentWeatherWithCityName("Piotrków Trybunalski"));
-
-        System.out.println();
-        System.out.println(weatherService.getCurrentWeatherWithCityName("Gdańsk"));
-        System.out.println();
-        //System.out.println("Ilość miast w historii: " + historyRepository.getActualSizeOfCityHistory());
-
-
-
-        //System.out.println(weatherService.getCurrentWeatherWithIp());
-
-        // System.out.println("Pogoda dla miast wojewódzkich:");
-
-        //List<WeatherMaster> currentWeatherForSeveralCities = weatherService.getCurrentWeatherForMainCities();
-
-        /*for (WeatherMaster currentWeatherForSeveralCity : currentWeatherForSeveralCities) {
+        for (WeatherMaster c : cities) {
             System.out.println();
-            System.out.println(currentWeatherForSeveralCity);
+            System.out.println(c);
             System.out.println();
-        }*/
+        }
 
     }
 }

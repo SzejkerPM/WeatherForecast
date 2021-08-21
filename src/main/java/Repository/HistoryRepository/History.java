@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @Table(name = "city_history")
 public class History {
 
-    public History(long cityId, String cityName) {
+    public History(int cityId, String cityName) {
         this.cityId = cityId;
         this.cityName = cityName;
         this.date = LocalDateTime.now();
@@ -22,7 +22,7 @@ public class History {
 
     @Id
     @Column(nullable = false, unique = true)
-    private long cityId;
+    private int cityId;
 
     @Column(nullable = false)
     private String cityName;

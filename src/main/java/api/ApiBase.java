@@ -1,6 +1,7 @@
 package api;
 
 import Exceptions.CallingApiException;
+import Exceptions.ConversionFromJsonException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -34,7 +35,7 @@ public abstract class ApiBase {
         try {
             return objectMapper.readValue(body, type);
         } catch (Exception e) {
-            throw new CallingApiException("Conversion from Json to Java failed");
+            throw new ConversionFromJsonException("Conversion from Json to Java failed", e.getCause());
         }
     }
 }

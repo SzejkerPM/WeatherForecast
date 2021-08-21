@@ -9,7 +9,7 @@ import java.util.List;
 public class WeatherMaster {
 
     @JsonProperty("id")
-    private long cityId;
+    private int cityId;
     @JsonProperty("name")
     private String cityName;
     @JsonProperty("coord")

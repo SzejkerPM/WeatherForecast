@@ -9,26 +9,28 @@ import java.util.List;
 @ToString
 public class HistoryRepository extends RepositoryBase {
 
-    public long getActualSizeOfCityHistory() {
-        return entityManager.createQuery("SELECT COUNT(*) FROM History", Long.class)
-                .getSingleResult();
-    }
-
-    public void deleteOldestHistory() {
-        doInTransaction(getHistory().get(0), entityManager::remove);
-    }
-
-    public List<History> getHistory() {
+    // ASC w nazwie odnosi się do sortowania (ASC = od najstarszych wyników)
+    private List<History> getHistoryAsc() {
         return entityManager.createQuery("FROM History h ORDER BY h.date", History.class)
                 .getResultList();
     }
 
+    // DESC = od najnowszych wyników
+    public List<History> getHistoryDesc() {
+        return entityManager.createQuery("FROM History h ORDER BY h.date DESC", History.class)
+                .getResultList();
+    }
+
+    private void deleteOldestHistory() {
+        doInTransaction(getHistoryAsc().get(0), entityManager::remove);
+    }
 
     public void saveCityToHistoryOrUpdateIfExists(History cityToAdd) {
-        List<History> history = getHistory();
+        List<History> history = getHistoryAsc();
         for (History h : history) {
             if (h.getCityId() == cityToAdd.getCityId()) {
-                doInTransaction(cityToAdd, entry -> entityManager.createQuery("UPDATE History h SET h.date = :newDate WHERE h.cityId = :cityId")
+                doInTransaction(cityToAdd, entry -> entityManager
+                        .createQuery("UPDATE History h SET h.date = :newDate WHERE h.cityId = :cityId")
                         .setParameter("newDate", LocalDateTime.now())
                         .setParameter("cityId", cityToAdd.getCityId())
                         .executeUpdate());
@@ -42,4 +44,3 @@ public class HistoryRepository extends RepositoryBase {
     }
 }
 
-// FIXME - DESC <- najnowsze w historii ||| ASC (lub bez) <- najstarsze w historii
