@@ -1,4 +1,4 @@
-package api.ipApi.jsonToJava;
+package API.ipApi.jsonToJava;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

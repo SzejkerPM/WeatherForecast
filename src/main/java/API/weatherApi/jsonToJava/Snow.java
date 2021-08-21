@@ -1,11 +1,11 @@
-package api.weatherApi.jsonToJava;
+package API.weatherApi.jsonToJava;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
-public class Rain {
+public class Snow {
 
     @JsonProperty("1h")
-    private double rainPerH;
+    private boolean snowPerH;
 }

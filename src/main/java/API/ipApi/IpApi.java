@@ -1,7 +1,7 @@
-package api.ipApi;
+package API.ipApi;
 
-import api.ApiBase;
-import api.ipApi.jsonToJava.IpMaster;
+import API.ApiBase;
+import API.ipApi.jsonToJava.IpMaster;
 import lombok.Getter;
 
 @Getter

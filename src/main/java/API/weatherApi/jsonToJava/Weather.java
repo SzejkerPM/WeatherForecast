@@ -1,4 +1,4 @@
-package api.weatherApi.jsonToJava;
+package API.weatherApi.jsonToJava;
 
 import lombok.Data;
 

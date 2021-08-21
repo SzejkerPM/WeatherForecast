@@ -1,8 +1,8 @@
 package Service;
 
-import api.ipApi.IpApi;
-import api.weatherApi.WeatherApi;
-import api.weatherApi.jsonToJava.WeatherMaster;
+import API.ipApi.IpApi;
+import API.weatherApi.WeatherApi;
+import API.weatherApi.jsonToJava.WeatherMaster;
 import Repository.CityRepository.CityRepository;
 import Repository.HistoryRepository.History;
 import Repository.HistoryRepository.HistoryRepository;
@@ -59,8 +59,10 @@ public class WeatherService {
     }
 
     public WeatherMaster getCurrentWeatherWithIp() {
-        return weatherApi.convertJsonToJava(weatherApi
+        WeatherMaster weatherMaster = weatherApi.convertJsonToJava(weatherApi
                 .callApiWithLatitudeAndLongitude(ipApi.getLat(), ipApi.getLon()), WeatherMaster.class);
+        historyRepository.saveCityToHistoryOrUpdateIfExists(convertWeatherDataToHistory(weatherMaster));
+        return weatherMaster;
     }
 
     //metoda nie zapisuje miast do historii, ponieważ jest używana tylko do uzyskania pogody dla miast wojewódzkich

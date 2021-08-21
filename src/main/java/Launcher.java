@@ -1,38 +1,23 @@
-import Service.WeatherService;
-import api.weatherApi.jsonToJava.WeatherMaster;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-import java.util.List;
+import java.util.Objects;
 
-
-public class Launcher {
+public class Launcher extends Application {
 
     public static void main(String[] args) {
+        launch(args);
+    }
 
-        // T E S T O W A N K O
-
-
-        //FUNKCJONALNOŚCI 100%
-
-        //REFACTORING 90%
-
-        //TESTY 0%
-
-        //GUI 1%
-
-        //REFACTORING GUI 0%
-
-
-        // Service zawiera wszystkie gotowe metody do użycia
-        WeatherService weatherService = new WeatherService();
-
-        System.out.println("Pogoda dla miast wojewódzkich:");
-        List<WeatherMaster> cities = weatherService.getCurrentWeatherForMainCities();
-
-        for (WeatherMaster c : cities) {
-            System.out.println();
-            System.out.println(c);
-            System.out.println();
-        }
-
+    @Override
+    public void start(Stage stage) throws Exception {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/weatherForecastMain.fxml")));
+        stage.setScene(new Scene(root, 800, 600));
+        stage.setTitle("Pogodynka");
+        stage.setResizable(false);
+        stage.show();
     }
 }
