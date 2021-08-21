@@ -1,10 +1,12 @@
-package repository;
+package Repository;
+
+import org.apache.commons.lang3.Conversion;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import java.util.function.Consumer;
 
-public abstract class RepositoryBase {
+public abstract class RepositoryBase extends Conversion {
 
 
     private final DatabaseConnection databaseConnection = DatabaseConnection.getInstance();

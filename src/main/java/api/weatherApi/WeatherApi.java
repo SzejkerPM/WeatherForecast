@@ -1,5 +1,6 @@
 package api.weatherApi;
 
+import Exceptions.CallingApiException;
 import api.ApiBase;
 
 public class WeatherApi extends ApiBase {

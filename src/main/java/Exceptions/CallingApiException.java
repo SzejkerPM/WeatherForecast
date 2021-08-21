@@ -1,4 +1,4 @@
-package api.weatherApi;
+package Exceptions;
 
 public class CallingApiException extends RuntimeException {
 

@@ -1,4 +1,4 @@
-package repository.HistoryRepository;
+package Repository.HistoryRepository;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data //TODO spojrzeć na to
+@Data
 @Entity
 @Table(name = "city_history")
 public class History {
@@ -29,5 +29,4 @@ public class History {
 
     @Column(nullable = false)
     private LocalDateTime date;
-    //FIXME funkcja eksperymentalna - działa!
 }

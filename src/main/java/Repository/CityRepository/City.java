@@ -1,4 +1,4 @@
-package repository.CityRepository;
+package Repository.CityRepository;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

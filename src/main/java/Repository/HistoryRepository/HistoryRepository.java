@@ -1,7 +1,7 @@
-package repository.HistoryRepository;
+package Repository.HistoryRepository;
 
 import lombok.ToString;
-import repository.RepositoryBase;
+import Repository.RepositoryBase;
 
 import java.time.LocalDateTime;
 import java.util.List;

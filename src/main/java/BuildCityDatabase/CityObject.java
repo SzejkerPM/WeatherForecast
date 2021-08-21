@@ -1,4 +1,5 @@
-package repository.jsonToJava;
+package BuildCityDatabase;
+
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
@@ -11,3 +12,4 @@ public class CityObject {
     @JsonProperty("name")
     private String cityName;
 }
+

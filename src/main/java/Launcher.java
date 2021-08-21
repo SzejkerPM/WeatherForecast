@@ -1,6 +1,5 @@
 import Service.WeatherService;
-import repository.DatabaseConnection;
-import repository.HistoryRepository.HistoryRepository;
+import Repository.HistoryRepository.HistoryRepository;
 
 
 public class Launcher {
@@ -12,11 +11,13 @@ public class Launcher {
 
         //FUNKCJONALNOŚCI - 100%
 
-        //REFACTORING 50%
+        //REFACTORING 70%
 
         //TESTY 0%
 
         //GUI 1%
+
+        //TODO sprawdzić wyjątki i ew wymienić
 
         WeatherService weatherService = new WeatherService();
 

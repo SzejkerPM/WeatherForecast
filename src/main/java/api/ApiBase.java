@@ -1,6 +1,6 @@
 package api;
 
-import api.weatherApi.CallingApiException;
+import Exceptions.CallingApiException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

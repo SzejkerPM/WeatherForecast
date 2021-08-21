@@ -3,10 +3,9 @@ package Service;
 import api.ipApi.IpApi;
 import api.weatherApi.WeatherApi;
 import api.weatherApi.jsonToJava.WeatherMaster;
-import repository.CityRepository.CityRepository;
-import repository.DatabaseConnection;
-import repository.HistoryRepository.History;
-import repository.HistoryRepository.HistoryRepository;
+import Repository.CityRepository.CityRepository;
+import Repository.HistoryRepository.History;
+import Repository.HistoryRepository.HistoryRepository;
 
 import java.util.ArrayList;
 import java.util.List;
