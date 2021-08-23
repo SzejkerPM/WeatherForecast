@@ -6,7 +6,7 @@ import API.ApiBase;
 public class WeatherApi extends ApiBase {
 
     private static final String host = "http://api.openweathermap.org/data/2.5/weather?appid=1bf2280610892b23825a629aeb4cddc0&lang=pl&units=metric";
-     static final String city = "&q=";
+    private static final String city = "&q=";
     private static final String id = "&id=";
     private static final String lat = "&lat=";
     private static final String lon = "&lon=";

@@ -54,16 +54,20 @@ public class WeatherService {
             weatherMaster = weatherApi
                     .convertJsonToJava(weatherApi.callApiWithCityName(cityName), WeatherMaster.class);
         }
-        if (weatherMaster.getCityName() != null) {
+        if (weatherMaster.getStatusCode() == 200) {
             historyRepository.saveCityToHistoryOrUpdateIfExists(convertWeatherDataToHistory(weatherMaster));
         }
         return weatherMaster;
     }
 
+    //TODO usunąć powtórkę kodu (IF)
+
     public WeatherMaster getCurrentWeatherWithIp() {
         WeatherMaster weatherMaster = weatherApi.convertJsonToJava(weatherApi
                 .callApiWithLatitudeAndLongitude(ipApi.getLat(), ipApi.getLon()), WeatherMaster.class);
-        historyRepository.saveCityToHistoryOrUpdateIfExists(convertWeatherDataToHistory(weatherMaster));
+        if (weatherMaster.getStatusCode() == 200) {
+            historyRepository.saveCityToHistoryOrUpdateIfExists(convertWeatherDataToHistory(weatherMaster));
+        }
         return weatherMaster;
     }
 
