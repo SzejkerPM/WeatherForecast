@@ -54,7 +54,9 @@ public class WeatherService {
             weatherMaster = weatherApi
                     .convertJsonToJava(weatherApi.callApiWithCityName(cityName), WeatherMaster.class);
         }
-        historyRepository.saveCityToHistoryOrUpdateIfExists(convertWeatherDataToHistory(weatherMaster));
+        if (weatherMaster.getCityName() != null) {
+            historyRepository.saveCityToHistoryOrUpdateIfExists(convertWeatherDataToHistory(weatherMaster));
+        }
         return weatherMaster;
     }
 

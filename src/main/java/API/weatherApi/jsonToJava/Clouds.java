@@ -6,6 +6,6 @@ import lombok.Data;
 @Data
 public class Clouds {
 
-    @JsonProperty("clouds")
+    @JsonProperty("all")
     private int cloudy;
 }

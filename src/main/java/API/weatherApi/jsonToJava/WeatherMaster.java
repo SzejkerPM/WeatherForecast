@@ -14,6 +14,8 @@ public class WeatherMaster {
     private String cityName;
     @JsonProperty("coord")
     private Coord cityCoordinates;
+    @JsonProperty("cod")
+    private int statusCode;
     @JsonProperty("weather")
     private List<Weather> descriptions;
     @JsonProperty("main")
