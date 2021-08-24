@@ -50,13 +50,32 @@ public class MainController {
     @FXML
     ComboBox<String> comboBoxHistory;
 
+    @FXML
+    Label labelGorzowWielkopolski;
+
+    @FXML
+    ImageView imageViewGorzowWielkopolski;
+
+    @FXML
+    Label labelGdansk;
+
+    @FXML
+    ImageView imageViewGdansk;
+
 
     public void initialize() {
         buildHistoryInComboBox();
+        getWeatherForMainCities();
     }
-//TODO
+
+    //TODO (na razie eksperymenty)
     public void getWeatherForMainCities() {
         List<WeatherMaster> cities = weatherService.getCurrentWeatherForMainCities();
+
+        labelGorzowWielkopolski.setText(cities.get(3).getCityName() + " " + Math.round(cities.get(3).getMainWeatherInfo().getTemp()) + " \u2103");
+        imageViewGorzowWielkopolski.setImage(getIcon(cities.get(3)));
+        labelGdansk.setText(cities.get(2).getCityName() + " " + Math.round(cities.get(2).getMainWeatherInfo().getTemp()) + " \u2103");
+        imageViewGdansk.setImage(getIcon(cities.get(2)));
     }
 
     public void getWeatherByIdButton() {
@@ -82,24 +101,26 @@ public class MainController {
     }
 
     private void buildHistoryInComboBox() {
-        List<History> historyDesc = historyRepository.getHistoryDesc();
         for (int i = 0; i < 5; i++) {
-            comboBoxHistory.getItems().add(i, historyDesc.get(i).getCityName());
+            comboBoxHistory.getItems().add(i, "Puste miejsce");
         }
-
+        updateHistoryInComboBox();
     }
 
     private void updateHistoryInComboBox() {
         List<History> historyDesc = historyRepository.getHistoryDesc();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < historyRepository.getActualSizeOfCityHistory(); i++) {
             comboBoxHistory.getItems().set(i, historyDesc.get(i).getCityName());
         }
         comboBoxHistory.getSelectionModel().clearAndSelect(0);
     }
 
     public void searchCityFromComboBox() {
-        textFieldCityName.setText(comboBoxHistory.getValue());
-        getWeatherByCityName();
+        String value = comboBoxHistory.getValue();
+        if (!value.equalsIgnoreCase("Puste miejsce")) {
+            textFieldCityName.setText(value);
+            getWeatherByCityName();
+        }
     }
 
     public void showInfoDialog() {
@@ -123,13 +144,12 @@ public class MainController {
     }
 
     private void fillLabelsWithData(WeatherMaster weather) {
-        long temp = Math.round(weather.getMainWeatherInfo().getTemp());
         labelCityName.setText(weather.getCityName() + ", " + weather.getCountry().getCountry());
         labelDescription.setText(weather.getDescriptions().get(0).getDescription());
-        labelTemperature.setText(temp + "\u2103");
+        labelTemperature.setText(Math.round(weather.getMainWeatherInfo().getTemp()) + " \u2103");
         labelWeatherInfo.setText("Temperatura min/max: "
-                + weather.getMainWeatherInfo().getTempMin() + "/" + weather.getMainWeatherInfo().getTempMax() + "\u2103"
-                + "\nTemperatura odczuwalna: " + weather.getMainWeatherInfo().getFeelsLike() + "\u2103"
+                + weather.getMainWeatherInfo().getTempMin() + "/" + weather.getMainWeatherInfo().getTempMax() + " \u2103"
+                + "\nTemperatura odczuwalna: " + weather.getMainWeatherInfo().getFeelsLike() + " \u2103"
                 + "\nWilgotność: " + weather.getMainWeatherInfo().getHumidity() + " %"
                 + "\nCiśnienie: " + weather.getMainWeatherInfo().getPressure() + " hPa"
                 + "\nWiatr: " + weather.getWind().getSpeed() + " km/h"
@@ -142,7 +162,7 @@ public class MainController {
     private String getRainIfPossible(WeatherMaster weather) {
 
         if (weather.toString().contains("Rain")) {
-            return "Opady deszczu: " + weather.getRain().getRainPerH() + " perH";
+            return "Opady deszczu: " + weather.getRain().getRainPerH() + " mm";
         } else {
             return "Opady deszczu: brak";
         }
@@ -151,14 +171,13 @@ public class MainController {
     private String getSnowIfPossible(WeatherMaster weather) {
 
         if (weather.toString().contains("Snow")) {
-            return "Opady śniegu: " + weather.getSnow().getSnowPerH() + " perH";
+            return "Opady śniegu: " + weather.getSnow().getSnowPerH() + " mm";
         } else {
             return "Opady śniegu: brak";
         }
     }
 
     private Image getIcon(WeatherMaster weatherMaster) {
-        String icon = weatherMaster.getDescriptions().get(0).getIcon();
-        return new Image("http://openweathermap.org/img/w/" + icon + ".png");
+        return new Image("http://openweathermap.org/img/w/" + weatherMaster.getDescriptions().get(0).getIcon() + ".png");
     }
 }

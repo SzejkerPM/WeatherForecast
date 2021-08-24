@@ -15,25 +15,9 @@ public class WeatherService {
     private final IpApi ipApi = new IpApi();
     private final CityRepository cityRepository = new CityRepository();
     private final HistoryRepository historyRepository = new HistoryRepository();
-    private final Map<String, Integer> mainCities = Map.ofEntries(
-            Map.entry("Białystok", 776069),
-            Map.entry("Bydgoszcz", 3102014),
-            Map.entry("Gdańsk", 3099434),
-            Map.entry("Gorzów Wielkopolski", 3098722),
-            Map.entry("Katowice", 3096472),
-            Map.entry("Kielce", 769250),
-            Map.entry("Kraków", 3094802),
-            Map.entry("Lublin", 765876),
-            Map.entry("Łódź", 3093133),
-            Map.entry("Olsztyn", 763166),
-            Map.entry("Opole", 3090048),
-            Map.entry("Poznań", 3088171),
-            Map.entry("Rzeszów", 759734),
-            Map.entry("Szczecin", 3083829),
-            Map.entry("Toruń", 3083271),
-            Map.entry("Warszawa", 6695624),
-            Map.entry("Wrocław", 3081368),
-            Map.entry("Zielona Góra", 3080165));
+    private final List<Integer> alphabeticalMainCitiesIds = new ArrayList<>(List.of(
+            776069, 3102014, 3099434, 3098722, 3096472, 769250, 3094802, 765876, 3093133, 763166, 3090048, 3088171,
+            759734, 3083829, 3083271, 6695624, 3081368, 3080165));
 
     private Optional<Integer> searchCityIdInDatabase(String cityName) {
         return cityRepository.findCityIdByCityName(cityName);
@@ -78,7 +62,7 @@ public class WeatherService {
 
     public List<WeatherMaster> getCurrentWeatherForMainCities() {
         List<WeatherMaster> citiesList = new ArrayList<>();
-        for (Integer c : mainCities.values()) {
+        for (Integer c : alphabeticalMainCitiesIds) {
             citiesList.add(getCurrentWeatherWithCityId(c));
         }
         return citiesList;

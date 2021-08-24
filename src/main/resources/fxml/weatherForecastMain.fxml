@@ -19,7 +19,7 @@
       <Button fx:id="buttonIdSearch" layoutX="92.0" layoutY="100.0" mnemonicParsing="false" onAction="#getWeatherByIdButton" prefHeight="25.0" prefWidth="149.0" text="Szukaj po IP" />
       <ImageView fitHeight="406.0" fitWidth="383.0" layoutX="248.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/map.png" />
+            <Image url="@../images/map2.png" />
          </image>
       </ImageView>
       <ComboBox fx:id="comboBoxHistory" layoutX="306.0" layoutY="42.0" onAction="#searchCityFromComboBox" prefHeight="25.0" prefWidth="163.0" promptText="Ostatnio przeglądane" visibleRowCount="5" />
@@ -49,5 +49,9 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
+      <Label fx:id="labelGorzowWielkopolski" layoutX="259.0" layoutY="178.0" prefHeight="17.0" prefWidth="149.0" />
+      <Label fx:id="labelGdansk" layoutX="388.0" layoutY="135.0" prefHeight="17.0" prefWidth="103.0" />
+      <ImageView fx:id="imageViewGorzowWielkopolski" fitHeight="43.0" fitWidth="50.0" layoutX="260.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageViewGdansk" fitHeight="43.0" fitWidth="50.0" layoutX="388.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

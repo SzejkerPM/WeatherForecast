@@ -42,5 +42,10 @@ public class HistoryRepository extends RepositoryBase {
         }
         doInTransaction(cityToAdd, entry -> entityManager.persist(cityToAdd));
     }
+
+    public long getActualSizeOfCityHistory() {
+        return entityManager.createQuery("SELECT COUNT(*) FROM History", Long.class)
+                .getSingleResult();
+    }
 }
 
