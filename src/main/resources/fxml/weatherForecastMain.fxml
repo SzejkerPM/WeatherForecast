@@ -12,35 +12,114 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainController">
    <children>
-      <TextField fx:id="textFieldCityName" layoutX="92.0" layoutY="42.0" onAction="#onEnter" promptText="np. Katowice" />
-      <Label layoutX="17.0" layoutY="43.0" prefHeight="22.0" prefWidth="75.0" text="Podaj miasto" />
-      <Button fx:id="buttonCityNameSearch" layoutX="248.0" layoutY="42.0" mnemonicParsing="false" onAction="#getWeatherByCityName" text="Szukaj" />
-      <Label layoutX="158.0" layoutY="75.0" text="lub" />
-      <Button fx:id="buttonIdSearch" layoutX="92.0" layoutY="100.0" mnemonicParsing="false" onAction="#getWeatherByIdButton" prefHeight="25.0" prefWidth="149.0" text="Szukaj po IP" />
-      <ImageView fitHeight="406.0" fitWidth="383.0" layoutX="248.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="461.0" fitWidth="470.0" layoutX="192.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/map2.png" />
+            <Image url="@../images/map.png" />
          </image>
       </ImageView>
-      <ComboBox fx:id="comboBoxHistory" layoutX="306.0" layoutY="42.0" onAction="#searchCityFromComboBox" prefHeight="25.0" prefWidth="163.0" promptText="Ostatnio przeglądane" visibleRowCount="5" />
-      <Label fx:id="labelWeatherInfo" alignment="TOP_LEFT" layoutX="14.0" layoutY="298.0" prefHeight="132.0" prefWidth="211.0" />
-      <Label fx:id="labelCityName" alignment="CENTER" layoutX="16.0" layoutY="143.0" prefHeight="43.0" prefWidth="211.0" textAlignment="CENTER">
+      <ImageView fx:id="imageViewGorzowWlkp" fitHeight="34.0" fitWidth="34.0" layoutX="222.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="labelGorzowWlkp" layoutX="256.0" layoutY="181.0" prefHeight="23.0" prefWidth="33.0">
          <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <Label fx:id="labelDescription" alignment="CENTER" layoutX="14.0" layoutY="245.0" prefHeight="43.0" prefWidth="211.0">
-         <font>
-            <Font size="14.0" />
+            <Font name="Arial Bold" size="12.0" />
          </font></Label>
-      <ImageView fx:id="imageViewIcon" fitHeight="88.0" fitWidth="103.0" layoutX="16.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="labelTemperature" layoutX="123.0" layoutY="171.0" prefHeight="88.0" prefWidth="103.0">
+      <Label fx:id="labelGdansk" layoutX="392.0" layoutY="73.0" prefHeight="23.0" prefWidth="33.0">
          <font>
-            <Font size="18.0" />
+            <Font name="Arial Bold" size="12.0" />
+         </font></Label>
+      <ImageView fx:id="imageViewGdansk" fitHeight="34.0" fitWidth="34.0" layoutX="358.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageViewKrakow" fitHeight="34.0" fitWidth="34.0" layoutX="440.0" layoutY="362.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="labelBialystok" layoutX="589.0" layoutY="151.0" prefHeight="23.0" prefWidth="33.0">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="labelBydgoszcz" layoutX="357.0" layoutY="155.0" prefHeight="23.0" prefWidth="33.0">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font></Label>
+      <Label fx:id="labelTorun" layoutX="426.0" layoutY="163.0" prefHeight="23.0" prefWidth="33.0">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font></Label>
+      <ImageView fx:id="imageViewBydgoszcz" fitHeight="34.0" fitWidth="34.0" layoutX="323.0" layoutY="144.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageViewTorun" fitHeight="34.0" fitWidth="34.0" layoutX="392.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageViewBialystok" fitHeight="34.0" fitWidth="34.0" layoutX="555.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="labelKatowice" layoutX="417.0" layoutY="362.0" prefHeight="23.0" prefWidth="33.0">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="labelRain" layoutX="14.0" layoutY="430.0" prefHeight="17.0" prefWidth="211.0" />
-      <Label fx:id="labelSnow" layoutX="14.0" layoutY="447.0" prefHeight="17.0" prefWidth="211.0" />
+      <ImageView fx:id="imageViewKatowice" fitHeight="34.0" fitWidth="34.0" layoutX="383.0" layoutY="351.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageViewKielce" fitHeight="34.0" fitWidth="34.0" layoutX="466.0" layoutY="303.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="labelKielce" layoutX="500.0" layoutY="314.0" prefHeight="23.0" prefWidth="33.0">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelKrakow" layoutX="474.0" layoutY="373.0" prefHeight="23.0" prefWidth="33.0">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="imageViewLodz" fitHeight="34.0" fitWidth="34.0" layoutX="411.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageViewLublin" fitHeight="34.0" fitWidth="34.0" layoutX="548.0" layoutY="276.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="labelLublin" layoutX="582.0" layoutY="287.0" prefHeight="23.0" prefWidth="33.0">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelLodz" layoutX="445.0" layoutY="249.0" prefHeight="23.0" prefWidth="33.0">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelOlsztyn" layoutX="499.0" layoutY="112.0" prefHeight="23.0" prefWidth="33.0">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelOpole" layoutX="378.0" layoutY="329.0" prefHeight="23.0" prefWidth="33.0">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="imageViewOlsztyn" fitHeight="34.0" fitWidth="34.0" layoutX="465.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageViewOpole" fitHeight="34.0" fitWidth="34.0" layoutX="344.0" layoutY="318.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="labelPoznan" layoutX="340.0" layoutY="206.0" prefHeight="23.0" prefWidth="33.0">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelRzeszow" layoutX="554.0" layoutY="371.0" prefHeight="23.0" prefWidth="33.0">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelSzczecin" layoutX="257.0" layoutY="128.0" prefHeight="23.0" prefWidth="33.0">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="imageViewSzczecin" fitHeight="34.0" fitWidth="34.0" layoutX="223.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageViewPoznan" fitHeight="34.0" fitWidth="34.0" layoutX="306.0" layoutY="195.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageViewRzeszow" fitHeight="34.0" fitWidth="34.0" layoutX="520.0" layoutY="360.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="labelWarszawa" layoutX="507.0" layoutY="221.0" prefHeight="23.0" prefWidth="33.0">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelWroclaw" layoutX="322.0" layoutY="299.0" prefHeight="23.0" prefWidth="33.0">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelZielonaGora" layoutX="271.0" layoutY="236.0" prefHeight="23.0" prefWidth="33.0">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="imageViewZielonaGora" fitHeight="34.0" fitWidth="34.0" layoutX="237.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageViewWroclaw" fitHeight="34.0" fitWidth="34.0" layoutX="288.0" layoutY="288.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageViewWarszawa" fitHeight="34.0" fitWidth="34.0" layoutX="473.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="43.0" fitWidth="26.0" layoutX="600.0" layoutY="14.0" onMouseClicked="#showInfoDialog" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/about.jpg" />
@@ -49,9 +128,29 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Label fx:id="labelGorzowWielkopolski" layoutX="259.0" layoutY="178.0" prefHeight="17.0" prefWidth="149.0" />
-      <Label fx:id="labelGdansk" layoutX="388.0" layoutY="135.0" prefHeight="17.0" prefWidth="103.0" />
-      <ImageView fx:id="imageViewGorzowWielkopolski" fitHeight="43.0" fitWidth="50.0" layoutX="260.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="imageViewGdansk" fitHeight="43.0" fitWidth="50.0" layoutX="388.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imageViewIcon" fitHeight="88.0" fitWidth="103.0" layoutX="16.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="labelSnow" layoutX="14.0" layoutY="424.0" prefHeight="17.0" prefWidth="211.0" />
+      <Label fx:id="labelRain" layoutX="14.0" layoutY="407.0" prefHeight="17.0" prefWidth="211.0" />
+      <Label fx:id="labelTemperature" layoutX="123.0" layoutY="171.0" prefHeight="88.0" prefWidth="103.0">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelDescription" alignment="CENTER" layoutX="14.0" layoutY="245.0" prefHeight="43.0" prefWidth="211.0">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="labelWeatherInfo" alignment="TOP_LEFT" layoutX="14.0" layoutY="298.0" prefHeight="109.0" prefWidth="211.0" />
+      <Label fx:id="labelCityName" alignment="CENTER" layoutX="16.0" layoutY="143.0" prefHeight="43.0" prefWidth="211.0" textAlignment="CENTER">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="111.0" layoutY="74.0" text="lub" />
+      <Button fx:id="buttonCityNameSearch" layoutX="200.0" layoutY="43.0" mnemonicParsing="false" onAction="#getWeatherByCityName" text="Szukaj" />
+      <Button fx:id="buttonIdSearch" layoutX="45.0" layoutY="100.0" mnemonicParsing="false" onAction="#getWeatherByIdButton" prefHeight="25.0" prefWidth="149.0" text="Szukaj po IP" />
+      <Label layoutX="84.0" layoutY="16.0" prefHeight="22.0" prefWidth="75.0" text="Podaj miasto" />
+      <TextField fx:id="textFieldCityName" layoutX="45.0" layoutY="43.0" onAction="#onEnter" promptText="np. Katowice" />
+      <ComboBox fx:id="comboBoxHistory" layoutX="256.0" layoutY="43.0" onAction="#searchCityFromComboBox" prefHeight="25.0" prefWidth="157.0" promptText="Ostatnio przeglądane" visibleRowCount="5" />
    </children>
 </AnchorPane>

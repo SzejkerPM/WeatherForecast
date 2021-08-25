@@ -51,16 +51,113 @@ public class MainController {
     ComboBox<String> comboBoxHistory;
 
     @FXML
-    Label labelGorzowWielkopolski;
+    Label labelBialystok;
 
     @FXML
-    ImageView imageViewGorzowWielkopolski;
+    ImageView imageViewBialystok;
+
+    @FXML
+    Label labelBydgoszcz;
+
+    @FXML
+    ImageView imageViewBydgoszcz;
 
     @FXML
     Label labelGdansk;
 
     @FXML
     ImageView imageViewGdansk;
+
+    @FXML
+    Label labelGorzowWlkp;
+
+    @FXML
+    ImageView imageViewGorzowWlkp;
+
+    @FXML
+    Label labelKatowice;
+
+    @FXML
+    ImageView imageViewKatowice;
+
+    @FXML
+    Label labelKielce;
+
+    @FXML
+    ImageView imageViewKielce;
+
+    @FXML
+    Label labelKrakow;
+
+    @FXML
+    ImageView imageViewKrakow;
+
+    @FXML
+    Label labelTorun;
+
+    @FXML
+    ImageView imageViewTorun;
+
+    @FXML
+    Label labelLublin;
+
+    @FXML
+    ImageView imageViewLublin;
+
+    @FXML
+    Label labelLodz;
+
+    @FXML
+    ImageView imageViewLodz;
+
+    @FXML
+    Label labelOlsztyn;
+
+    @FXML
+    ImageView imageViewOlsztyn;
+
+    @FXML
+    Label labelOpole;
+
+    @FXML
+    ImageView imageViewOpole;
+
+    @FXML
+    Label labelPoznan;
+
+    @FXML
+    ImageView imageViewPoznan;
+
+    @FXML
+    Label labelRzeszow;
+
+    @FXML
+    ImageView imageViewRzeszow;
+
+    @FXML
+    Label labelSzczecin;
+
+    @FXML
+    ImageView imageViewSzczecin;
+
+    @FXML
+    Label labelWarszawa;
+
+    @FXML
+    ImageView imageViewWarszawa;
+
+    @FXML
+    Label labelWroclaw;
+
+    @FXML
+    ImageView imageViewWroclaw;
+
+    @FXML
+    Label labelZielonaGora;
+
+    @FXML
+    ImageView imageViewZielonaGora;
+
 
 
     public void initialize() {
@@ -72,16 +169,48 @@ public class MainController {
     public void getWeatherForMainCities() {
         List<WeatherMaster> cities = weatherService.getCurrentWeatherForMainCities();
 
-        labelGorzowWielkopolski.setText(cities.get(3).getCityName() + " " + Math.round(cities.get(3).getMainWeatherInfo().getTemp()) + " \u2103");
-        imageViewGorzowWielkopolski.setImage(getIcon(cities.get(3)));
-        labelGdansk.setText(cities.get(2).getCityName() + " " + Math.round(cities.get(2).getMainWeatherInfo().getTemp()) + " \u2103");
+        labelBialystok.setText(Math.round(cities.get(0).getMainWeatherInfo().getTemp()) + " \u2103");
+        imageViewBialystok.setImage(getIcon(cities.get(0)));
+        labelBydgoszcz.setText(Math.round(cities.get(1).getMainWeatherInfo().getTemp()) + " \u2103");
+        imageViewBydgoszcz.setImage(getIcon(cities.get(1)));
+        labelGdansk.setText(Math.round(cities.get(2).getMainWeatherInfo().getTemp()) + " \u2103");
         imageViewGdansk.setImage(getIcon(cities.get(2)));
+        labelGorzowWlkp.setText(Math.round(cities.get(3).getMainWeatherInfo().getTemp()) + " \u2103");
+        imageViewGorzowWlkp.setImage(getIcon(cities.get(3)));
+        labelKatowice.setText(Math.round(cities.get(4).getMainWeatherInfo().getTemp()) + " \u2103");
+        imageViewKatowice.setImage(getIcon(cities.get(4)));
+        labelKielce.setText(Math.round(cities.get(5).getMainWeatherInfo().getTemp()) + " \u2103");
+        imageViewKielce.setImage(getIcon(cities.get(5)));
+        labelKrakow.setText(Math.round(cities.get(6).getMainWeatherInfo().getTemp()) + " \u2103");
+        imageViewKrakow.setImage(getIcon(cities.get(6)));
+        labelLublin.setText(Math.round(cities.get(7).getMainWeatherInfo().getTemp()) + " \u2103");
+        imageViewLublin.setImage(getIcon(cities.get(7)));
+        labelLodz.setText(Math.round(cities.get(8).getMainWeatherInfo().getTemp()) + " \u2103");
+        imageViewLodz.setImage(getIcon(cities.get(8)));
+        labelOlsztyn.setText(Math.round(cities.get(9).getMainWeatherInfo().getTemp()) + " \u2103");
+        imageViewOlsztyn.setImage(getIcon(cities.get(9)));
+        labelOpole.setText(Math.round(cities.get(10).getMainWeatherInfo().getTemp()) + " \u2103");
+        imageViewOpole.setImage(getIcon(cities.get(10)));
+        labelPoznan.setText(Math.round(cities.get(11).getMainWeatherInfo().getTemp()) + " \u2103");
+        imageViewPoznan.setImage(getIcon(cities.get(11)));
+        labelRzeszow.setText(Math.round(cities.get(12).getMainWeatherInfo().getTemp()) + " \u2103");
+        imageViewRzeszow.setImage(getIcon(cities.get(12)));
+        labelSzczecin.setText(Math.round(cities.get(13).getMainWeatherInfo().getTemp()) + " \u2103");
+        imageViewSzczecin.setImage(getIcon(cities.get(13)));
+        labelTorun.setText(Math.round(cities.get(14).getMainWeatherInfo().getTemp()) + " \u2103");
+        imageViewTorun.setImage(getIcon(cities.get(14)));
+        labelWarszawa.setText(Math.round(cities.get(15).getMainWeatherInfo().getTemp()) + " \u2103");
+        imageViewWarszawa.setImage(getIcon(cities.get(15)));
+        labelWroclaw.setText(Math.round(cities.get(16).getMainWeatherInfo().getTemp()) + " \u2103");
+        imageViewWroclaw.setImage(getIcon(cities.get(16)));
+        labelZielonaGora.setText(Math.round(cities.get(17).getMainWeatherInfo().getTemp()) + " \u2103");
+        imageViewZielonaGora.setImage(getIcon(cities.get(17)));
     }
 
     public void getWeatherByIdButton() {
         WeatherMaster weather = weatherService.getCurrentWeatherWithIp();
         fillLabelsWithData(weather);
-        updateHistoryInComboBox();
+        updateAndCorrectHistoryInComboBox();
     }
 
     public void onEnter() {
@@ -92,7 +221,7 @@ public class MainController {
         WeatherMaster weather = weatherService.getCurrentWeatherWithCityName(textFieldCityName.getText());
         if (weather.getStatusCode() == 200) {
             fillLabelsWithData(weather);
-            updateHistoryInComboBox();
+            updateAndCorrectHistoryInComboBox();
         } else {
             showErrorDialog();
         }
@@ -112,6 +241,15 @@ public class MainController {
         for (int i = 0; i < historyRepository.getActualSizeOfCityHistory(); i++) {
             comboBoxHistory.getItems().set(i, historyDesc.get(i).getCityName());
         }
+    }
+
+    private void updateAndCorrectHistoryInComboBox() {
+        updateHistoryInComboBox();
+        correctSelectInComboBox();
+    }
+
+    // Niestety, metoda clear stwarza zbyt wiele problemów, aby jej używać. Dlatego mamy clearAndSelect0
+    private void correctSelectInComboBox() {
         comboBoxHistory.getSelectionModel().clearAndSelect(0);
     }
 
@@ -181,3 +319,6 @@ public class MainController {
         return new Image("http://openweathermap.org/img/w/" + weatherMaster.getDescriptions().get(0).getIcon() + ".png");
     }
 }
+
+//TODO przycisk "odśwież" dla aktualnego miasta (może też dla wojewódzkich)
+//TODO w miejsca gdzie mam dane o pogodzie umieścić inne informacje lub ciekawostki (dodać też przycisk który je przywróci po wyszukaniu pogody)
