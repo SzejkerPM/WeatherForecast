@@ -165,7 +165,15 @@ public class MainController {
         getWeatherForMainCities();
     }
 
-    //TODO (na razie eksperymenty)
+    public void refreshCurrentCity() {
+        textFieldCityName.setText(historyRepository.getHistoryDesc().get(0).getCityName());
+        getWeatherByCityName();
+    }
+
+    public void refreshMainCities() {
+        getWeatherForMainCities();
+    }
+
     public void getWeatherForMainCities() {
         List<WeatherMaster> cities = weatherService.getCurrentWeatherForMainCities();
 
@@ -269,7 +277,10 @@ public class MainController {
                 " przycisk SZUKAJ lub naciśnij ENTER\n\n" +
                 "Wyszukiwanie po IP - wyszukuje Twoją przybliżoną lokalizację i na jej podstawie wyświetla pogodę\n\n" +
                 "Ostatnio przeglądane miasta - zapisuje 5 ostatnio przeglądanych miast i sortuje od najnowszych" +
-                " pozycji. Wybranie miasta z listy spowoduje natychmiastowe wyszukanie pogody");
+                " pozycji. Wybranie miasta z listy spowoduje natychmiastowe wyszukanie pogody\n\n" +
+                "Przycisk ODŚWIEŻ w lewym górnym rogu pozwala odświeżyć ostatnio wyszukane miasto\n\n" +
+                "Przycisk ODŚWIEŻ w prawym dolnym rogu pozwala odświeżyć pogodę dla całej mapy " +
+                "(może to zawiesić program na kilka sekund w zależności od mocy komputera i prędkości internetu)");
         infoAlert.showAndWait();
     }
 
@@ -316,7 +327,7 @@ public class MainController {
     }
 
     private Image getIcon(WeatherMaster weatherMaster) {
-        return new Image("http://openweathermap.org/img/w/" + weatherMaster.getDescriptions().get(0).getIcon() + ".png");
+        return new Image("https://openweathermap.org/img/w/" + weatherMaster.getDescriptions().get(0).getIcon() + ".png");
     }
 }
 
