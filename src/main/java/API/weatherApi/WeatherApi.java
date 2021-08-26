@@ -14,7 +14,7 @@ public class WeatherApi extends ApiBase {
 
     public String callApiWithCityName(String cityName) {
         try {
-            return callApi(host + city + cityName);
+            return callApi(host + city + fixCityNameIfNecessary(cityName));
         } catch (Exception e) {
             throw new CallingApiException("Calling OpenWeatherMap API with city name failed", e.getCause());
         }
@@ -34,5 +34,9 @@ public class WeatherApi extends ApiBase {
         } catch (Exception e) {
             throw new CallingApiException("Calling OpenWeatherMap API with latitude and longitude failed", e.getCause());
         }
+    }
+
+    private String fixCityNameIfNecessary(String cityName) {
+        return cityName.replace(" ", "+");
     }
 }

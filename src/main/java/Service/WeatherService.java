@@ -27,6 +27,12 @@ public class WeatherService {
         return new History(weatherMaster.getCityId(), weatherMaster.getCityName());
     }
 
+    private void saveCityIfStatusCodeIsOk(WeatherMaster weatherMaster) {
+        if (weatherMaster.getStatusCode() == 200) {
+            historyRepository.saveCityToHistoryOrUpdateIfExists(convertWeatherDataToHistory(weatherMaster));
+        }
+    }
+
     //metoda dodatkowo przeszukuje bazę w poszukiwaniu ID dla lepszych wyników
     public WeatherMaster getCurrentWeatherWithCityName(String cityName) {
         Optional<Integer> cityIdFromCityName = searchCityIdInDatabase(cityName);
@@ -38,20 +44,14 @@ public class WeatherService {
             weatherMaster = weatherApi
                     .convertJsonToJava(weatherApi.callApiWithCityName(cityName), WeatherMaster.class);
         }
-        if (weatherMaster.getStatusCode() == 200) {
-            historyRepository.saveCityToHistoryOrUpdateIfExists(convertWeatherDataToHistory(weatherMaster));
-        }
+        saveCityIfStatusCodeIsOk(weatherMaster);
         return weatherMaster;
     }
-
-    //TODO usunąć powtórkę kodu (IF)
 
     public WeatherMaster getCurrentWeatherWithIp() {
         WeatherMaster weatherMaster = weatherApi.convertJsonToJava(weatherApi
                 .callApiWithLatitudeAndLongitude(ipApi.getLat(), ipApi.getLon()), WeatherMaster.class);
-        if (weatherMaster.getStatusCode() == 200) {
-            historyRepository.saveCityToHistoryOrUpdateIfExists(convertWeatherDataToHistory(weatherMaster));
-        }
+        saveCityIfStatusCodeIsOk(weatherMaster);
         return weatherMaster;
     }
 

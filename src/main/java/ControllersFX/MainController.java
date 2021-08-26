@@ -1,4 +1,4 @@
-package Controllers;
+package ControllersFX;
 
 import API.weatherApi.jsonToJava.WeatherMaster;
 import Repository.HistoryRepository.History;
@@ -158,6 +158,8 @@ public class MainController {
     @FXML
     ImageView imageViewZielonaGora;
 
+    @FXML
+    ProgressBar progressBarCities; //FIXME
 
 
     public void initialize() {
@@ -172,47 +174,6 @@ public class MainController {
 
     public void refreshMainCities() {
         getWeatherForMainCities();
-    }
-
-    public void getWeatherForMainCities() {
-        List<WeatherMaster> cities = weatherService.getCurrentWeatherForMainCities();
-
-        labelBialystok.setText(Math.round(cities.get(0).getMainWeatherInfo().getTemp()) + " \u2103");
-        imageViewBialystok.setImage(getIcon(cities.get(0)));
-        labelBydgoszcz.setText(Math.round(cities.get(1).getMainWeatherInfo().getTemp()) + " \u2103");
-        imageViewBydgoszcz.setImage(getIcon(cities.get(1)));
-        labelGdansk.setText(Math.round(cities.get(2).getMainWeatherInfo().getTemp()) + " \u2103");
-        imageViewGdansk.setImage(getIcon(cities.get(2)));
-        labelGorzowWlkp.setText(Math.round(cities.get(3).getMainWeatherInfo().getTemp()) + " \u2103");
-        imageViewGorzowWlkp.setImage(getIcon(cities.get(3)));
-        labelKatowice.setText(Math.round(cities.get(4).getMainWeatherInfo().getTemp()) + " \u2103");
-        imageViewKatowice.setImage(getIcon(cities.get(4)));
-        labelKielce.setText(Math.round(cities.get(5).getMainWeatherInfo().getTemp()) + " \u2103");
-        imageViewKielce.setImage(getIcon(cities.get(5)));
-        labelKrakow.setText(Math.round(cities.get(6).getMainWeatherInfo().getTemp()) + " \u2103");
-        imageViewKrakow.setImage(getIcon(cities.get(6)));
-        labelLublin.setText(Math.round(cities.get(7).getMainWeatherInfo().getTemp()) + " \u2103");
-        imageViewLublin.setImage(getIcon(cities.get(7)));
-        labelLodz.setText(Math.round(cities.get(8).getMainWeatherInfo().getTemp()) + " \u2103");
-        imageViewLodz.setImage(getIcon(cities.get(8)));
-        labelOlsztyn.setText(Math.round(cities.get(9).getMainWeatherInfo().getTemp()) + " \u2103");
-        imageViewOlsztyn.setImage(getIcon(cities.get(9)));
-        labelOpole.setText(Math.round(cities.get(10).getMainWeatherInfo().getTemp()) + " \u2103");
-        imageViewOpole.setImage(getIcon(cities.get(10)));
-        labelPoznan.setText(Math.round(cities.get(11).getMainWeatherInfo().getTemp()) + " \u2103");
-        imageViewPoznan.setImage(getIcon(cities.get(11)));
-        labelRzeszow.setText(Math.round(cities.get(12).getMainWeatherInfo().getTemp()) + " \u2103");
-        imageViewRzeszow.setImage(getIcon(cities.get(12)));
-        labelSzczecin.setText(Math.round(cities.get(13).getMainWeatherInfo().getTemp()) + " \u2103");
-        imageViewSzczecin.setImage(getIcon(cities.get(13)));
-        labelTorun.setText(Math.round(cities.get(14).getMainWeatherInfo().getTemp()) + " \u2103");
-        imageViewTorun.setImage(getIcon(cities.get(14)));
-        labelWarszawa.setText(Math.round(cities.get(15).getMainWeatherInfo().getTemp()) + " \u2103");
-        imageViewWarszawa.setImage(getIcon(cities.get(15)));
-        labelWroclaw.setText(Math.round(cities.get(16).getMainWeatherInfo().getTemp()) + " \u2103");
-        imageViewWroclaw.setImage(getIcon(cities.get(16)));
-        labelZielonaGora.setText(Math.round(cities.get(17).getMainWeatherInfo().getTemp()) + " \u2103");
-        imageViewZielonaGora.setImage(getIcon(cities.get(17)));
     }
 
     public void getWeatherByIdButton() {
@@ -306,6 +267,46 @@ public class MainController {
         labelRain.setText(getRainIfPossible(weather));
         labelSnow.setText(getSnowIfPossible(weather));
         imageViewIcon.setImage(getIcon(weather));
+    }
+
+    public void getWeatherForMainCities() {
+        List<WeatherMaster> cities = weatherService.getCurrentWeatherForMainCities();
+        labelBialystok.setText(Math.round(cities.get(0).getMainWeatherInfo().getTemp()) + " \u2103");
+        imageViewBialystok.setImage(getIcon(cities.get(0)));
+        labelBydgoszcz.setText(Math.round(cities.get(1).getMainWeatherInfo().getTemp()) + " \u2103");
+        imageViewBydgoszcz.setImage(getIcon(cities.get(1)));
+        labelGdansk.setText(Math.round(cities.get(2).getMainWeatherInfo().getTemp()) + " \u2103");
+        imageViewGdansk.setImage(getIcon(cities.get(2)));
+        labelGorzowWlkp.setText(Math.round(cities.get(3).getMainWeatherInfo().getTemp()) + " \u2103");
+        imageViewGorzowWlkp.setImage(getIcon(cities.get(3)));
+        labelKatowice.setText(Math.round(cities.get(4).getMainWeatherInfo().getTemp()) + " \u2103");
+        imageViewKatowice.setImage(getIcon(cities.get(4)));
+        labelKielce.setText(Math.round(cities.get(5).getMainWeatherInfo().getTemp()) + " \u2103");
+        imageViewKielce.setImage(getIcon(cities.get(5)));
+        labelKrakow.setText(Math.round(cities.get(6).getMainWeatherInfo().getTemp()) + " \u2103");
+        imageViewKrakow.setImage(getIcon(cities.get(6)));
+        labelLublin.setText(Math.round(cities.get(7).getMainWeatherInfo().getTemp()) + " \u2103");
+        imageViewLublin.setImage(getIcon(cities.get(7)));
+        labelLodz.setText(Math.round(cities.get(8).getMainWeatherInfo().getTemp()) + " \u2103");
+        imageViewLodz.setImage(getIcon(cities.get(8)));
+        labelOlsztyn.setText(Math.round(cities.get(9).getMainWeatherInfo().getTemp()) + " \u2103");
+        imageViewOlsztyn.setImage(getIcon(cities.get(9)));
+        labelOpole.setText(Math.round(cities.get(10).getMainWeatherInfo().getTemp()) + " \u2103");
+        imageViewOpole.setImage(getIcon(cities.get(10)));
+        labelPoznan.setText(Math.round(cities.get(11).getMainWeatherInfo().getTemp()) + " \u2103");
+        imageViewPoznan.setImage(getIcon(cities.get(11)));
+        labelRzeszow.setText(Math.round(cities.get(12).getMainWeatherInfo().getTemp()) + " \u2103");
+        imageViewRzeszow.setImage(getIcon(cities.get(12)));
+        labelSzczecin.setText(Math.round(cities.get(13).getMainWeatherInfo().getTemp()) + " \u2103");
+        imageViewSzczecin.setImage(getIcon(cities.get(13)));
+        labelTorun.setText(Math.round(cities.get(14).getMainWeatherInfo().getTemp()) + " \u2103");
+        imageViewTorun.setImage(getIcon(cities.get(14)));
+        labelWarszawa.setText(Math.round(cities.get(15).getMainWeatherInfo().getTemp()) + " \u2103");
+        imageViewWarszawa.setImage(getIcon(cities.get(15)));
+        labelWroclaw.setText(Math.round(cities.get(16).getMainWeatherInfo().getTemp()) + " \u2103");
+        imageViewWroclaw.setImage(getIcon(cities.get(16)));
+        labelZielonaGora.setText(Math.round(cities.get(17).getMainWeatherInfo().getTemp()) + " \u2103");
+        imageViewZielonaGora.setImage(getIcon(cities.get(17)));
     }
 
     private String getRainIfPossible(WeatherMaster weather) {

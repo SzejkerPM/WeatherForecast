@@ -7,7 +7,7 @@ import lombok.Getter;
 @Getter
 public class IpApi extends ApiBase {
 
-    private static final String host = "https://ip-api.com/json/";
+    private static final String host = "http://ip-api.com/json/";
     private static IpMaster ipMaster;
     private final double lat;
     private final double lon;

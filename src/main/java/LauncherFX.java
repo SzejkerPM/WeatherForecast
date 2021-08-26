@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 
 import java.util.Objects;
 
-public class Launcher extends Application {
+public class LauncherFX extends Application {
 
     public static void main(String[] args) {
         launch(args);
@@ -19,8 +19,7 @@ public class Launcher extends Application {
         stage.setScene(new Scene(root, 640, 480));
         stage.setTitle("Pogodynka");
         stage.setResizable(false);
-        Image icon = new Image("images/icon.png");
-        stage.getIcons().add(icon);
+        stage.getIcons().add(new Image("images/icon.png"));
         stage.show();
     }
 }
