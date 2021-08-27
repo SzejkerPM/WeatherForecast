@@ -10,11 +10,12 @@ public class WeatherApi extends ApiBase {
     private static final String id = "&id=";
     private static final String lat = "&lat=";
     private static final String lon = "&lon=";
+    private static final String regex = "^([a-zA-Z\\u0080-\\u024F]+(?:. |-| |'))*[a-zA-Z\\u0080-\\u024F]*$";
 
 
     public String callApiWithCityName(String cityName) {
         try {
-            return callApi(host + city + fixCityNameIfNecessary(cityName));
+            return callApi(host + city + fixCityNameIfNecessary(checkIfCityNameIsCorrect(cityName)));
         } catch (Exception e) {
             throw new CallingApiException("Calling OpenWeatherMap API with city name failed", e.getCause());
         }
@@ -37,6 +38,14 @@ public class WeatherApi extends ApiBase {
     }
 
     private String fixCityNameIfNecessary(String cityName) {
-        return cityName.replace(" ", "+");
+            return cityName.replace(" ", "+");
+    }
+
+    private String checkIfCityNameIsCorrect(String cityName) {
+            if (cityName.matches(regex)) {
+                return cityName;
+            } else {
+                return "";
+            }
     }
 }

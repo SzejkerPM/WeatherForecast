@@ -6,6 +6,9 @@ import Repository.HistoryRepository.HistoryRepository;
 import Service.WeatherService;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -159,8 +162,7 @@ public class MainController {
     ImageView imageViewZielonaGora;
 
     @FXML
-    ProgressBar progressBarCities; //FIXME
-
+    ImageView imageViewUpdated;
 
     public void initialize() {
         buildHistoryInComboBox();
@@ -174,6 +176,8 @@ public class MainController {
 
     public void refreshMainCities() {
         getWeatherForMainCities();
+        imageViewUpdated.setVisible(true);
+        imageViewUpdated.applyCss(); //FIXME
     }
 
     public void getWeatherByIdButton() {
@@ -196,6 +200,10 @@ public class MainController {
         }
         textFieldCityName.setText("");
 
+    }
+
+    public void hideUpdatedImage() {
+        imageViewUpdated.setVisible(false);
     }
 
     private void buildHistoryInComboBox() {
@@ -233,15 +241,17 @@ public class MainController {
     public void showInfoDialog() {
         Alert infoAlert = new Alert(Alert.AlertType.INFORMATION);
         infoAlert.setTitle("WEATHER FORECAST INFO");
-        infoAlert.setHeaderText("Informacje na temat aplikacji");
+        infoAlert.setHeaderText("Informacje na temat funkcji aplikacji");
         infoAlert.setContentText("Wyszukiwanie po nazwie miasta - wpisz nazwę miasta w oznaczonym polu i wciśnij" +
-                " przycisk SZUKAJ lub naciśnij ENTER\n\n" +
-                "Wyszukiwanie po IP - wyszukuje Twoją przybliżoną lokalizację i na jej podstawie wyświetla pogodę\n\n" +
+                " przycisk SZUKAJ lub naciśnij ENTER.\n\n" +
+                "Wyszukiwanie po IP - wyszukuje Twoją przybliżoną lokalizację i na jej podstawie wyświetla pogodę.\n\n" +
                 "Ostatnio przeglądane miasta - zapisuje 5 ostatnio przeglądanych miast i sortuje od najnowszych" +
-                " pozycji. Wybranie miasta z listy spowoduje natychmiastowe wyszukanie pogody\n\n" +
-                "Przycisk ODŚWIEŻ w lewym górnym rogu pozwala odświeżyć ostatnio wyszukane miasto\n\n" +
+                " pozycji. Wybranie miasta z listy spowoduje natychmiastowe wyszukanie pogody.\n\n" +
+                "Przycisk ODŚWIEŻ w lewym górnym rogu pozwala odświeżyć ostatnio wyszukane miasto.\n\n" +
                 "Przycisk ODŚWIEŻ w prawym dolnym rogu pozwala odświeżyć pogodę dla całej mapy " +
-                "(może to zawiesić program na kilka sekund w zależności od mocy komputera i prędkości internetu)");
+                "(może to zawiesić program na kilka sekund w zależności od mocy komputera i prędkości internetu). " +
+                "Gdy mapa skończy się aktualizować - wyświetli zielony obrazek w celu potwierdzenia. Kliknięcie na niego" +
+                " sprawi, że zniknie.");
         infoAlert.showAndWait();
     }
 
@@ -257,9 +267,9 @@ public class MainController {
         labelCityName.setText(weather.getCityName() + ", " + weather.getCountry().getCountry());
         labelDescription.setText(weather.getDescriptions().get(0).getDescription());
         labelTemperature.setText(Math.round(weather.getMainWeatherInfo().getTemp()) + " \u2103");
-        labelWeatherInfo.setText("Temperatura min/max: "
+        labelWeatherInfo.setText("\nTemperatura odczuwalna: " + weather.getMainWeatherInfo().getFeelsLike() + " \u2103"
+                + "\nTemperatura min/max: "
                 + weather.getMainWeatherInfo().getTempMin() + "/" + weather.getMainWeatherInfo().getTempMax() + " \u2103"
-                + "\nTemperatura odczuwalna: " + weather.getMainWeatherInfo().getFeelsLike() + " \u2103"
                 + "\nWilgotność: " + weather.getMainWeatherInfo().getHumidity() + " %"
                 + "\nCiśnienie: " + weather.getMainWeatherInfo().getPressure() + " hPa"
                 + "\nWiatr: " + weather.getWind().getSpeed() + " km/h"
@@ -269,7 +279,7 @@ public class MainController {
         imageViewIcon.setImage(getIcon(weather));
     }
 
-    public void getWeatherForMainCities() {
+    private void getWeatherForMainCities() {
         List<WeatherMaster> cities = weatherService.getCurrentWeatherForMainCities();
         labelBialystok.setText(Math.round(cities.get(0).getMainWeatherInfo().getTemp()) + " \u2103");
         imageViewBialystok.setImage(getIcon(cities.get(0)));
@@ -332,5 +342,4 @@ public class MainController {
     }
 }
 
-//TODO przycisk "odśwież" dla aktualnego miasta (może też dla wojewódzkich)
 //TODO w miejsca gdzie mam dane o pogodzie umieścić inne informacje lub ciekawostki (dodać też przycisk który je przywróci po wyszukaniu pogody)

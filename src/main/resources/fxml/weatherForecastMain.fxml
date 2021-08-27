@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -130,8 +129,8 @@
          </cursor>
       </ImageView>
       <ImageView fx:id="imageViewIcon" fitHeight="88.0" fitWidth="103.0" layoutX="16.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="labelSnow" layoutX="14.0" layoutY="424.0" prefHeight="17.0" prefWidth="211.0" />
-      <Label fx:id="labelRain" layoutX="14.0" layoutY="407.0" prefHeight="17.0" prefWidth="211.0" />
+      <Label fx:id="labelSnow" layoutX="14.0" layoutY="433.0" prefHeight="17.0" prefWidth="211.0" />
+      <Label fx:id="labelRain" layoutX="14.0" layoutY="416.0" prefHeight="17.0" prefWidth="211.0" />
       <Label fx:id="labelTemperature" layoutX="123.0" layoutY="171.0" prefHeight="88.0" prefWidth="103.0">
          <font>
             <Font name="System Bold" size="24.0" />
@@ -141,7 +140,7 @@
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Label fx:id="labelWeatherInfo" alignment="TOP_LEFT" layoutX="14.0" layoutY="298.0" prefHeight="109.0" prefWidth="211.0" />
+      <Label fx:id="labelWeatherInfo" alignment="TOP_LEFT" layoutX="14.0" layoutY="298.0" prefHeight="120.0" prefWidth="211.0" />
       <Label fx:id="labelCityName" alignment="CENTER" layoutX="16.0" layoutY="143.0" prefHeight="43.0" prefWidth="211.0" textAlignment="CENTER">
          <font>
             <Font size="16.0" />
@@ -163,6 +162,10 @@
             <Image url="@../images/refresh.png" />
          </image>
       </ImageView>
-      <ProgressBar fx:id="progressBarCities" layoutX="286.0" layoutY="458.0" prefHeight="17.0" prefWidth="75.0" progress="0.0" visible="false" />
+      <ImageView id="updated" fx:id="imageViewUpdated" fitHeight="241.0" fitWidth="255.0" layoutX="297.0" layoutY="124.0" nodeOrientation="INHERIT" onMouseClicked="#hideUpdatedImage" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/updated.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

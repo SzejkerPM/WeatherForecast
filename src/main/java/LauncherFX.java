@@ -15,8 +15,10 @@ public class LauncherFX extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("fxml/weatherForecastMain.fxml")));
-        stage.setScene(new Scene(root, 640, 480));
+        Parent root = FXMLLoader.load((Objects.requireNonNull(getClass().getResource("fxml/weatherForecastMain.fxml"))));
+        Scene scene = new Scene(root, 640, 480);
+        scene.getStylesheets().add((Objects.requireNonNull(getClass().getResource("css/weatherForecastStyles.css"))).toExternalForm());
+        stage.setScene(scene);
         stage.setTitle("Pogodynka");
         stage.setResizable(false);
         stage.getIcons().add(new Image("images/icon.png"));
