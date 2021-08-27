@@ -165,8 +165,8 @@ public class MainController {
     ImageView imageViewUpdated;
 
     public void initialize() {
-        buildHistoryInComboBox();
-        getWeatherForMainCities();
+        buildHistoryInComboBox(); // + 0.3 sekundy ładowania apki
+        getWeatherForMainCities(); // + 1.5 sekundy ładowania apki
     }
 
     public void refreshCurrentCity() {
@@ -177,7 +177,6 @@ public class MainController {
     public void refreshMainCities() {
         getWeatherForMainCities();
         imageViewUpdated.setVisible(true);
-        imageViewUpdated.applyCss(); //FIXME
     }
 
     public void getWeatherByIdButton() {
@@ -206,29 +205,6 @@ public class MainController {
         imageViewUpdated.setVisible(false);
     }
 
-    private void buildHistoryInComboBox() {
-        for (int i = 0; i < 5; i++) {
-            comboBoxHistory.getItems().add(i, "Puste miejsce");
-        }
-        updateHistoryInComboBox();
-    }
-
-    private void updateHistoryInComboBox() {
-        List<History> historyDesc = historyRepository.getHistoryDesc();
-        for (int i = 0; i < historyRepository.getActualSizeOfCityHistory(); i++) {
-            comboBoxHistory.getItems().set(i, historyDesc.get(i).getCityName());
-        }
-    }
-
-    private void updateAndCorrectHistoryInComboBox() {
-        updateHistoryInComboBox();
-        correctSelectInComboBox();
-    }
-
-    // Niestety, metoda clear stwarza zbyt wiele problemów, aby jej używać. Dlatego mamy clearAndSelect0
-    private void correctSelectInComboBox() {
-        comboBoxHistory.getSelectionModel().clearAndSelect(0);
-    }
 
     public void searchCityFromComboBox() {
         String value = comboBoxHistory.getValue();
@@ -253,6 +229,31 @@ public class MainController {
                 "Gdy mapa skończy się aktualizować - wyświetli zielony obrazek w celu potwierdzenia. Kliknięcie na niego" +
                 " sprawi, że zniknie.");
         infoAlert.showAndWait();
+    }
+
+    private void buildHistoryInComboBox() {
+        for (int i = 0; i < 5; i++) {
+            comboBoxHistory.getItems().add(i, "Puste miejsce");
+        }
+        updateHistoryInComboBox();
+    }
+
+    private void updateHistoryInComboBox() {
+        List<History> historyDesc = historyRepository.getHistoryDesc();
+        for (int i = 0; i < historyRepository.getActualSizeOfCityHistory(); i++) {
+            comboBoxHistory.getItems().set(i, historyDesc.get(i).getCityName());
+        }
+    }
+
+    private void updateAndCorrectHistoryInComboBox() {
+        updateHistoryInComboBox();
+        correctSelectInComboBox();
+    }
+
+    // Niestety, metoda clear stwarza zbyt wiele problemów, aby jej używać. Dlatego mamy clearAndSelect0
+    // A metoda wyżej jest po to żeby nie wywoływać clear przy initialize
+    private void correctSelectInComboBox() {
+        comboBoxHistory.getSelectionModel().clearAndSelect(0);
     }
 
     private void showErrorDialog() {
