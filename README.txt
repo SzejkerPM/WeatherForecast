@@ -14,6 +14,7 @@ Upewnij się, że uruchamiasz projekt na Javie 11.* i JavaFX 11.*!
 
 O projekcie:
 Projekt był realizowany samodzielnie w trakcie kursu, w momencie gdzie nie mieliśmy jeszcze zajęć z frontendu czy springa. "Pogodynka" to prosty program, który korzysta z API OpenWeatherMap do wyszukiwania pogody po: nazwie, id (z użyciem bazy danych miast) oraz przy pomocy współrzędnych uzyskiwanych z IP-API. Interfejs graficzny JavaFX dodałem dodatkowo, aby poćwiczyć tworzenie aplikacji okienkowych. Krótki opis funkcji programu znajduje się również w samej aplikacji pod ikonką "i" w prawym górnym rogu.
+Prace nad projektem nadal trwają. Pozostało napisać testy i zająć się stylowaniem CSS + ewentualne pomysły na nowe funkcje.
 
 Twórca aplikacji, Maciej Wilga
 
