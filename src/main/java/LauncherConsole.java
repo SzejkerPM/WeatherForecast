@@ -1,4 +1,4 @@
-import API.weatherApi.jsonToJava.WeatherMaster;
+import API.WeatherApi.WeatherProperties.WeatherMaster;
 import Service.WeatherService;
 
 public class LauncherConsole {

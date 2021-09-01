@@ -1,4 +1,4 @@
-package API.weatherApi.jsonToJava;
+package API.WeatherApi.WeatherProperties;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

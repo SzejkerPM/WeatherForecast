@@ -1,6 +1,6 @@
 package ControllersFX;
 
-import API.weatherApi.jsonToJava.WeatherMaster;
+import API.WeatherApi.WeatherProperties.WeatherMaster;
 import Repository.HistoryRepository.History;
 import Repository.HistoryRepository.HistoryRepository;
 import Service.WeatherService;

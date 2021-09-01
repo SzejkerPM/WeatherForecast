@@ -1,4 +1,4 @@
-package API.weatherApi;
+package API.WeatherApi;
 
 import Exceptions.CallingApiException;
 import API.ApiBase;

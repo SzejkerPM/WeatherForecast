@@ -1,8 +1,8 @@
 package Service;
 
-import API.ipApi.IpApi;
-import API.weatherApi.WeatherApi;
-import API.weatherApi.jsonToJava.WeatherMaster;
+import API.IpApi.IpApi;
+import API.WeatherApi.WeatherApi;
+import API.WeatherApi.WeatherProperties.WeatherMaster;
 import Repository.CityRepository.CityRepository;
 import Repository.HistoryRepository.History;
 import Repository.HistoryRepository.HistoryRepository;
