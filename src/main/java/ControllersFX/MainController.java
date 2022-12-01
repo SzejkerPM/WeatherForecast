@@ -343,4 +343,3 @@ public class MainController {
     }
 }
 
-//TODO w miejsca gdzie mam dane o pogodzie umieścić inne informacje lub ciekawostki (dodać też przycisk który je przywróci po wyszukaniu pogody)
